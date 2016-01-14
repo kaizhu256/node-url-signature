@@ -3,5 +3,5 @@
     "description": "minimal hmac-256 url signer and validator with zero npm dependencies",
     "license": "MIT",
     "name": "url-signature",
-    "version": "2015.12.1"
+    "version": "2015.12.2"
 }

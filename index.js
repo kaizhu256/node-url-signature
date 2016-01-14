@@ -12,10 +12,9 @@
     'use strict';
     var local;
     // init local
-    local = global.local = module.exports;
+    local = module.exports;
     // require modules
     local.crypto = require('crypto');
-    local.url = require('url');
     // init functions
     local.nop = function () {
     /*
@@ -41,7 +40,7 @@
             ? ''
             : '&');
         // add timestamp
-        urlParsed.search += 'timestamp_' + Date.now();
+        urlParsed.search += 'signature_' + Date.now();
         // init hmac
         hmac = new local.crypto.Hmac(
             'sha256',
@@ -49,7 +48,7 @@
                 Math.random().toString(16).slice(2))
         );
         // create hmac-256-signature from url-search-param
-        urlParsed.search += '&signature_' + encodeURIComponent(
+        urlParsed.search += '=' + encodeURIComponent(
             hmac.update(urlParsed.search).digest('base64')
         );
         return urlParsed.prefix + urlParsed.search + urlParsed.hash;
@@ -60,8 +59,8 @@
      */
         var hmac, validated;
         try {
-            local.url.parse(url).search.replace(
-                (/(.*?timestamp_([^&]+?))&signature_([^&]+?)$/),
+            url.split('#')[0].replace(
+                (/(\?.*?signature_([^&]+?))=([^&]+?)$/),
                 function (match0, match1, match2, match3) {
                     // jslint-hack
                     local.nop(match0);

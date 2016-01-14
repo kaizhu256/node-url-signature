@@ -21,7 +21,7 @@ url = 'http://aa.com/bb?cc=1&dd=2#ff';
 
 // sign url with $URL_SIGNATURE_SIGNING_KEY
 urlSigned = url_signature.urlSign(url);
-// output - http://aa.com/bb?cc=1&dd=2&timestamp_1452169975398&signature_k2XB%2BDpERSACANp2WgiTLpGq4GAV9aFX0yEuQK%2BTy2w%3D#ff
+// output - http://aa.com/bb?cc=1&dd=2&signature_1452718914605=O133aaw8cVnu1C4MDlzbj%2BLMVGtMPos7wIx%2B3%2BnLJRc%3D#ff
 
 // validate signed url with $URL_SIGNATURE_SIGNING_KEY
 url_signature.urlValidate(urlSigned);
@@ -31,6 +31,7 @@ url_signature.urlValidate(urlSigned);
 # todo
 - none
 
-# changes since 9fe8c225
-- npm publish 2015.12.1
+# changes since 5ed6f5b3
+- npm publish 2015.12.2
+- merge timestamp param into signature param
 - none
